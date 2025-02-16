@@ -32,6 +32,12 @@ async function preprocessImage(image) {
 
 // Fungsi untuk melakukan prediksi
 async function predictImage() {
+    if (!model) {
+        console.error(" Model is not loaded yet!");
+        alert("Please wait for the model to load.");
+        return;
+    }
+
     const image = document.getElementById("imagePreview");
     if (!image.src || image.src === window.location.href) {
         alert("Please upload an image first!");
@@ -42,6 +48,6 @@ async function predictImage() {
     const prediction = model.predict(tensor);
     const predictedClass = prediction.argMax(1).dataSync()[0];
 
-    const labels = ["Dog", "Cat", "Wild"]; // Sesuaikan dengan labels.txt
+    const labels = ["Dog", "Cat", "Wild"];
     document.getElementById("predictionResult").innerText = `Prediction: ${labels[predictedClass]}`;
 }
