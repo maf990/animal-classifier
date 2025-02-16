@@ -2,7 +2,8 @@ let model; // Variabel untuk menyimpan model
 
 // Load model saat halaman dibuka
 async function loadModel() {
-    model = await tf.loadGraphModel('http://127.0.0.1:5500/model/tfjs_model/model.json');
+    // model = await tf.loadGraphModel('http://127.0.0.1:5500/model/tfjs_model/model.json');
+    model = await tf.loadGraphModel(window.location.origin +'/model/tfjs_model/model.json');
     console.log("✅ Model Loaded!");
 }
 loadModel();
